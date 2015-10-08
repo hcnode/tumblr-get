@@ -1,0 +1,22 @@
+{
+  "name": "tumblr-get",
+  "main": "index.js",
+  "version": "0.0.0",
+  "authors": [
+    "hcnode <7372@163.com>"
+  ],
+  "description": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.4"
+  }
+}

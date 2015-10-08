@@ -6,7 +6,7 @@
   "scripts": {
     "postinstall": "bower install"
   },
-  "author": "",
+  "author": "hcnode@gmail.com",
   "license": "MIT",
   "bin": "./bin/tumblr-get.js",
   "repository": {

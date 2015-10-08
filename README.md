@@ -3,9 +3,10 @@ Get tumblr images tools
 ## Usage
 
 ### Cli
-
+install tumblr-get globally
 `npm install tumblr-get -g`
 
+options
 ```bash
 harry$ tumblr-get -h
 
@@ -20,3 +21,14 @@ harry$ tumblr-get -h
     -t, --timeout [n]      Optional, timeout of requesting image, default is 10s
 ```
 
+samples
+`tumblr-get -i movieposteroftheday -o /Users/harry -t 2000`
+
+this command mean: 
+
+ * get all images from [http://movieposteroftheday.tumblr.com/archive](http://movieposteroftheday.tumblr.com/archive)
+ * save images to /Users/harry
+ * image request timeout is 2000ms
+
+### code
+see [test](https://github.com/hcnode/tumblr-get/blob/master/test/test.js)

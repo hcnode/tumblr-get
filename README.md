@@ -4,6 +4,7 @@ Get tumblr images tools
 
 ### Cli
 install tumblr-get globally
+
 `npm install tumblr-get -g`
 
 options
@@ -22,6 +23,7 @@ harry$ tumblr-get -h
 ```
 
 samples
+
 `tumblr-get -i movieposteroftheday -o /Users/harry -t 2000`
 
 this command mean: 

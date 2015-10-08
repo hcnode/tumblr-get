@@ -22,7 +22,7 @@ harry$ tumblr-get -h
     -t, --timeout [n]      Optional, timeout of requesting image, default is 10s
 ```
 
-samples
+sample
 
 `tumblr-get -i movieposteroftheday -o /Users/harry -t 2000`
 

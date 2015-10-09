@@ -32,7 +32,7 @@ harry$ tumblr-get -h
 
 sample
 
-`tumblr-get -i movieposteroftheday -o /Users/harry -t 2000 -c video`
+`tumblr-get -i movieposteroftheday -o /Users/harry -t 2000 -c image`
 
 this command mean: 
 

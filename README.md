@@ -1,5 +1,10 @@
 Get tumblr images/videos tools
 
+## Dependencies
+node version: v0.12.* is OK, v4.* is NOT OK
+bower: `npm install bower -g`
+
+
 ## Usage
 
 ### Cli

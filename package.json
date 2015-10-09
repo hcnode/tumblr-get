@@ -1,6 +1,6 @@
 {
   "name": "tumblr-get",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "get tumblr images",
   "main": "index.js",
   "scripts": {
@@ -9,6 +9,7 @@
   "author": "hcnode@gmail.com",
   "license": "MIT",
   "bin": "./bin/tumblr-get.js",
+  "engines" : { "node" : ">=0.10.* <=0.12.*" },
   "repository": {
     "type": "git",
     "url": "https://hcnode.github.com/tumblr-get"

@@ -39,7 +39,7 @@ this command mean:
  * get all images from [http://movieposteroftheday.tumblr.com/archive](http://movieposteroftheday.tumblr.com/archive)
  * save images to /Users/harry
  * image request timeout is 2000ms
- * get video only
+ * get image only
 
 ### code
 see [test](https://github.com/hcnode/tumblr-get/blob/master/test/test.js)

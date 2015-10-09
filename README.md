@@ -7,10 +7,11 @@ Get tumblr images/videos tools
 
 ## Usage
 
-### Cli
 install tumblr-get globally
 
 `npm install tumblr-get -g`
+
+### Cli
 
 options
 ```bash

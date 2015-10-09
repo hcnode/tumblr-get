@@ -5,7 +5,7 @@ var jquery = fs.readFileSync(__dirname + "/bower_components/jquery/dist/jquery.m
 var q_parallel = require("q-parallel");
 var request = require("request");
 
-function get(url, id, timeout, dir){
+function get(url, id, timeout, dir, category){
 	jsdom.env({
 		url: url,
 		src: [jquery],
@@ -16,15 +16,24 @@ function get(url, id, timeout, dir){
 			var nextUrl;
 			if (window) {
 				var $ = window.$;
-				var items = $(".l-content .post_thumbnail_container");
+				var itemsImage = $(".l-content div.is_photo .post_thumbnail_container");
+				var itemsVideo = $(".l-content div.is_video .post_thumbnail_container");
 				var next = $("#next_page_link");
 				if (next) {
 					nextUrl = next.prop("href");
 				}
 				var images = [];
-				items && items.attr("data-imageurl", function (index, attr) {
-					images.push(attr);
-				});
+				if(!category || category == "image") {
+					itemsImage && itemsImage.attr("data-imageurl", function (index, attr) {
+						images.push(attr.replace("250", "1280"));
+					});
+				}
+				if(!category || category == "video") {
+					itemsVideo && itemsVideo.attr("data-imageurl", function (index, attr) {
+						images.push("https://vt.tumblr.com/" + (/\/([^\/]+)$/.test(attr) && RegExp.$1).replace(/_frame.+/, "") + ".mp4");
+					});
+				}
+				//console.log(images);return;
 				q_parallel(images, 1, function (i, defer, item) {
 					if(!dir) {
 						dir = id;
@@ -36,25 +45,31 @@ function get(url, id, timeout, dir){
 							fs.mkdirSync(dir);
 						}
 					}
-					var path = dir + "/" + (/\/([^\/]+)$/.test(item) && RegExp.$1).replace("250", "500");
-					request({
-						url : item,
-						timeout : timeout || 10000
-					})
-						.on('response', function(response) {
-							console.log(path)
-							defer.resolve(true);
-						})
-						.on('error', function(err) {
+					function cb(err, response){
+						if(err){
 							console.log(err)
-							defer.resolve(true);
-						})
+							if(fs.existsSync(path)){
+								fs.unlinkSync(path);
+							}
+						}else{
+							console.log(path)
+						}
+						defer.resolve(true);
+					}
+					var path = dir + "/" + (/\/([^\/]+)$/.test(item) && RegExp.$1);
+					(item.indexOf(".mp4") > -1 ? request({
+						url : item,
+						timeout : (10000)
+					}, cb) : request({
+						url : item,
+						timeout : (timeout || 10000)
+					}, cb))
 						.pipe(fs.createWriteStream(path))
 				}, function () {
 					if(nextUrl){
 						console.log("next");
 						window.close();
-						get(nextUrl, id, timeout, dir);
+						get(nextUrl, id, timeout, dir, category);
 					}else{
 						console.log("done");
 					}
@@ -68,7 +83,7 @@ function get(url, id, timeout, dir){
 			}
 		}});
 }
-module.exports = function (id, timeout, dir) {
+module.exports = function (id, timeout, dir, category) {
 	var url = "http://"+ id +".tumblr.com/archive";
 	if(dir){
 		if(!fs.existsSync(dir)) {
@@ -78,5 +93,5 @@ module.exports = function (id, timeout, dir) {
 			dir += "/" + id;
 		}
 	}
-	get(url, id, timeout, dir);
+	get(url, id, timeout, dir, category);
 }

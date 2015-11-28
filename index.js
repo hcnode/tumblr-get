@@ -35,6 +35,8 @@ function get(url, id, timeout, dir, category){
 					});
 				}
 
+
+
 				q_parallel(images, 1, function (i, defer, item) {
 					if(!dir) {
 						dir = id;
@@ -58,15 +60,28 @@ function get(url, id, timeout, dir, category){
 						defer.resolve(true);
 					}
 					var path = dir + "/" + (/\/([^\/]+)$/.test(item) && RegExp.$1);
-					(item.indexOf(".mp4") > -1 ? request({
-						url : item,
-						timeout : (10000)
-					}, cb) : request({
-						url : item,
-						timeout : (timeout || 10000)
-					}, cb))
-						.pipe(fs.createWriteStream(path))
-				}, function () {
+
+                    //if file exist, means already downloads
+                    fs.stat(path, function(err, stats) {
+
+                        //console.log(err);
+                        //console.log(stats);
+
+                        if (err == undefined && stats != undefined && !stats.isFile()) {
+                            //没有错误,说明此文件存在
+                            (item.indexOf(".mp4") > -1 ? request({
+                                url: item,
+                                timeout: (10000)
+                            }, cb) : request({
+                                url: item,
+                                timeout: (timeout || 10000)
+                            }, cb))
+                                .pipe(fs.createWriteStream(path));
+                        }
+
+                    });
+
+                }, function () {
 					if(nextUrl){
 						console.log("next:%s", nextUrl);
 						window.close();

@@ -1,7 +1,7 @@
 {
   "name": "tumblr-get",
   "version": "0.1.2",
-  "description": "get tumblr images",
+  "description": "get tumblr images and videos, based on https://github.com/hcnode/tumblr-get",
   "main": "index.js",
   "scripts": {
     "postinstall": "bower install"
@@ -9,15 +9,15 @@
   "author": "hcnode@gmail.com",
   "license": "MIT",
   "bin": "./bin/tumblr-get.js",
-  "engines" : { "node" : ">=0.10.* <=0.12.*" },
+  "engines" : { "node" : ">=4.*" },
   "repository": {
     "type": "git",
-    "url": "https://github.com/hcnode/tumblr-get"
+    "url": "https://github.com/tomjamescn/tumblr-get"
   },
   "dependencies": {
-    "jsdom": "^3.1.2",
+    "jsdom": "^7.1.0",
+    "commander": "^2.9.0",
     "q-parallel": "^1.0.1",
-    "commander": "^2.8.1",
-    "request": "^2.64.0"
+    "request": "^2.67.0"
   }
 }

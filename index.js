@@ -31,21 +31,9 @@ function get(url, id, timeout, dir, category){
 				}
 				if(!category || category == "video") {
 					itemsVideo && itemsVideo.attr("data-imageurl", function (index, attr) {
-
-                        var t = (/\/([^\/]+)$/.test(attr) && RegExp.$1);
-
-                        if(t != undefined) {
-                            t = t.replace(/_frame.+/, "") + ".mp4";
-                            images.push("https://vt.tumblr.com/" + t);
-                        }else{
-                            console.log('error video url:%s', attr);
-                        }
-
-
+						images.push("https://vt.tumblr.com/" + (/\/([^\/]+)$/.test(attr) && RegExp.$1).replace(/_frame.+/, "") + ".mp4");
 					});
 				}
-
-
 
 				q_parallel(images, 1, function (i, defer, item) {
 					if(!dir) {
@@ -70,28 +58,15 @@ function get(url, id, timeout, dir, category){
 						defer.resolve(true);
 					}
 					var path = dir + "/" + (/\/([^\/]+)$/.test(item) && RegExp.$1);
-
-                    //if file exist, means already downloads
-                    fs.stat(path, function(err, stats) {
-
-                        //console.log(err);
-                        //console.log(stats);
-
-                        if (err == undefined && stats != undefined && !stats.isFile()) {
-                            //没有错误,说明此文件存在
-                            (item.indexOf(".mp4") > -1 ? request({
-                                url: item,
-                                timeout: (10000)
-                            }, cb) : request({
-                                url: item,
-                                timeout: (timeout || 10000)
-                            }, cb))
-                                .pipe(fs.createWriteStream(path));
-                        }
-
-                    });
-
-                }, function () {
+					(item.indexOf(".mp4") > -1 ? request({
+						url : item,
+						timeout : (10000)
+					}, cb) : request({
+						url : item,
+						timeout : (timeout || 10000)
+					}, cb))
+						.pipe(fs.createWriteStream(path))
+				}, function () {
 					if(nextUrl){
 						console.log("next:%s", nextUrl);
 						window.close();

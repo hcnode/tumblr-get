@@ -31,7 +31,17 @@ function get(url, id, timeout, dir, category){
 				}
 				if(!category || category == "video") {
 					itemsVideo && itemsVideo.attr("data-imageurl", function (index, attr) {
-						images.push("https://vt.tumblr.com/" + (/\/([^\/]+)$/.test(attr) && RegExp.$1).replace(/_frame.+/, "") + ".mp4");
+
+                        var t = (/\/([^\/]+)$/.test(attr) && RegExp.$1);
+
+                        if(t != undefined) {
+                            t = t.replace(/_frame.+/, "") + ".mp4";
+                            images.push("https://vt.tumblr.com/" + t);
+                        }else{
+                            console.log('error video url:%s', attr);
+                        }
+
+
 					});
 				}
 

@@ -1,7 +1,7 @@
 {
   "name": "tumblr-get",
   "version": "0.1.2",
-  "description": "get tumblr images and videos, based on https://github.com/hcnode/tumblr-get",
+  "description": "get tumblr images and videos",
   "main": "index.js",
   "scripts": {
     "postinstall": "bower install"
@@ -12,7 +12,7 @@
   "engines" : { "node" : ">=4.*" },
   "repository": {
     "type": "git",
-    "url": "https://github.com/tomjamescn/tumblr-get"
+    "url": "https://github.com/hcnode/tumblr-get"
   },
   "dependencies": {
     "jsdom": "^7.1.0",

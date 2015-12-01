@@ -1,8 +1,6 @@
 
-Get tumblr images/videos tools
-
 ## Dependencies
- * node version: >=4.*
+ * node version: >=0.12.* is OK, >=4.* is NOT OK
  * bower: `npm install bower -g`
 
 

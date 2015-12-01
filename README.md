@@ -1,9 +1,8 @@
-##Based on [https://github.com/hcnode/tumblr-get](https://github.com/hcnode/tumblr-get), which is failed on install on my mac :(, so I forked.
 
 Get tumblr images/videos tools
 
 ## Dependencies
- * node version: >=4.* is OK
+ * node version: >=4.*
  * bower: `npm install bower -g`
 
 

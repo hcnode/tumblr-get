@@ -13,6 +13,7 @@ function get(url, id, timeout, dir, category){
 			//"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53"
 		},
 		done: function (errors, window) {
+
 			var nextUrl;
 			if (window) {
 				var $ = window.$;
@@ -33,7 +34,7 @@ function get(url, id, timeout, dir, category){
 						images.push("https://vt.tumblr.com/" + (/\/([^\/]+)$/.test(attr) && RegExp.$1).replace(/_frame.+/, "") + ".mp4");
 					});
 				}
-				//console.log(images);return;
+
 				q_parallel(images, 1, function (i, defer, item) {
 					if(!dir) {
 						dir = id;
@@ -67,7 +68,7 @@ function get(url, id, timeout, dir, category){
 						.pipe(fs.createWriteStream(path))
 				}, function () {
 					if(nextUrl){
-						console.log("next");
+						console.log("next:%s", nextUrl);
 						window.close();
 						get(nextUrl, id, timeout, dir, category);
 					}else{

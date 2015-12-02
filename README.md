@@ -1,6 +1,6 @@
 
 ## Dependencies
- * node version: >=0.12.* is OK, >=4.* is NOT OK
+ * node version: >=0.12.* is OK, >=4.* is OK as well
  * bower: `npm install bower -g`
 
 

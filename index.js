@@ -1,7 +1,7 @@
 
 var jsdom = require("jsdom");
 var fs = require("fs");
-var jquery = fs.readFileSync(__dirname + "/bower_components/jquery/dist/jquery.min.js", "utf-8");
+var jquery = fs.readFileSync(__dirname + "/node_modules/jquery/dist/jquery.min.js", "utf-8");
 var q_parallel = require("q-parallel");
 var request = require("request");
 
@@ -13,7 +13,7 @@ function get(url, id, timeout, dir, category){
 			//"User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 7_0 like Mac OS X; en-us) AppleWebKit/537.51.1 (KHTML, like Gecko) Version/7.0 Mobile/11A465 Safari/9537.53"
 		},
 		done: function (errors, window) {
-
+			console.log(errors);
 			var nextUrl;
 			if (window) {
 				var $ = window.$;

@@ -1,8 +1,4 @@
 
-## Dependencies
- * node version: >=0.12.* is OK, >=4.* is OK as well
-
-
 ## Usage
 
 install tumblr-get globally
